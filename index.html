@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASTRONAUTAS - X</title>
+    
+    <style>
+       @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+      *{
+        margin:0;
+        padding:0;
+      }   
+       #chart{
+        overflow-y:auto;
+      }
+      #chart svg{ 
+        max-width: initial;  
+      }
+      #video-background{
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -1;
+      }
+      #content{
+        position: relative;
+        z-index: 1;
+        padding: 20px;
+        color: #fff;
+      }
+      .tituloprincipal{
+        height: 100vh;
+        width: 100%;
+        background-image: linear-gradient(rgba(11, 24, 87, 0.7),rgba(14, 32, 67, 0.7)),url("https://st1.uvnimg.com/dims4/default/7d90bdb/2147483647/thumbnail/1024x576%3E/quality/75/?url=https%3A%2F%2Fuvn-brightspot.s3.amazonaws.com%2Fassets%2Fvixes%2Fbtg%2Fcuriosidades.batanga.com%2Ffiles%2F10-interesantes-curiosidades-sobre-el-Universo-10_0.jpg");
+        background-position: center;
+        background-size: cover;
+      }
+      h1{
+        color: rgb(213, 217, 241);
+        font-family: 'Roboto', sans-serif;
+        font-size: 50px;        
+      }
+      h2{
+        color: rgb(4, 7, 30);
+        font-family:'Roboto', sans-serif;
+        text-align: center;
+        font-size: 23px;
+      }
+      h3{
+        color: rgb(16, 15, 15);
+        font-family:Arial, Helvetica, sans-serif;
+        text-align: center;
+        font-size: 18px;
+        font-weight: normal;
+      }
+      h4{
+        color: white;
+        font-family: "Roboto",serif;
+        size: 40px;
+      }
+      h5{
+        color: white;
+        font-family: "Roboto",serif;
+        size: 20px;
+        margin-top: 5px;
+        text-decoration: none;
+        color: inherit;
+      }
+      p{
+        color: white;
+        font-family:'Courier New', Courier, monospace;
+      }
+      body{
+        background-color:white;
+      }
+      .row{
+        display: flex;
+        height: 88%;
+        align-items: center;
+      }
+      .colum{
+        margin-top: 5%;
+        margin-left: 7%;
+        flex-basis: 70%;
+      }
+      button{
+        width: 180px;
+        color: #365693;
+        font-size: 12px;
+        padding: 12px 0;
+        background: whitesmoke;
+        border:0;
+        border-radius: 20px;
+        outline: none;
+        margin-top: 30px;
+        transition: transform 0.5s;
+        text-decoration: none;
+      }
+      button:hover{
+        transform:scale(1.1);
+      }
+      .card{
+        width: 200px;
+        height: 230px;
+        display: inline-block;
+        border-radius: 10px;
+        padding: 5px 15px;
+        box-sizing: border-box;
+        cursor: pointer;
+        margin: 20px 15px;
+        background-position: center;
+        background-size: cover;
+        transition: transform 0.5s;
+        text-decoration: none;
+       
+      }
+      .card:hover{
+        transform: translateY(-10px);
+        text-decoration: none;
+      }
+      .card1{
+        background-image: linear-gradient(rgba(56, 71, 145, 0.423),rgba(28, 45, 78, 0.391)),url("https://img.freepik.com/fotos-premium/astronauta-espacio-exterior-sobre-planeta-tierra-estrellas-proporcionan-fondo-realizando-espacio-sobre-planeta-tierra-salida-sol-puesta-sol-nuestro-hogar-iss-elementos-imagen-proporcionados-nasa_150455-13361.jpg?w=740");
+      }
+      .card2{
+        background-image: linear-gradient(rgba(56, 71, 145, 0.423),rgba(28, 45, 78, 0.391)),url("https://agendarweb.com.ar/wp-content/uploads/2022/01/Estacion_ISS.jpg");
+      }
+      .card3{
+        background-image: linear-gradient(rgba(56, 71, 145, 0.423),rgba(28, 45, 78, 0.391)),url("http://static.tiempo.com.mx/uploads/imagen/imagen/387186/principal_5b64c0358ea82f32008b4d16.jpg");
+      }
+      .card4{
+        background-image: linear-gradient(rgba(56, 71, 145, 0.423),rgba(28, 45, 78, 0.391)),url("https://upload.wikimedia.org/wikipedia/commons/9/98/EdWhiteFirstAmericanSpacewalker.1965.ws.jpg");
+      }
+     
+      .graficos{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .slides{
+        height: 100vh;
+        width: 100%;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+      }
+
+      .scroll{
+        scroll-snap-align: start;
+      }
+      
+    </style>
+  </head>
+  <body>
+   
+    <div class ="tituloprincipal">
+      <div>
+        <div class="row"> 
+          <div class="colum">
+            <h1>ANALIZANDO EL ESPACIO</h1>
+            <p>&nbsp</p>
+            <h4>Información acerca de las misiones espaciales de los disintos paises </h4>
+            <h4>durante el 2010 y el 2019</h4>
+            <button type="button"><a href="#comienzo" style="text-decoration: none;">Comenzar</a></button>
+          </div>
+          <div class="colum">
+            <a href="#comienzo" style="text-decoration: none; color:white;"> 
+            <div class="card card1">
+              <h5>Horas de misión de los diferentes paises </h5>  
+            </div>
+            </a>  
+           
+            <a href="#graf2" style="text-decoration: none; color: white;">
+            <div class="card card2">
+              <h5> EE.UU vs Rusia en la lucha espacial</h5>
+            </div>
+          </a>
+
+          <a href="#graf3" style="text-decoration: none; color: white;">
+            <div class="card card3">
+              <h5> Vocación de los astronautas</h5>
+            </div>
+          </a>
+
+          <a href="#graf4" style="text-decoration: none; color: white;">
+            <div class="card card4">
+              <h5> Civil vs Militar</h5>
+            </div>
+          </a>
+          </div>
+        </div>      
+      </div>
+    </div>
+  
+    <p>&nbsp</p>
+    <p>&nbsp</p>
+    <p>&nbsp</p>
+    
+    <div class="slides">
+    <div class="scroll">
+    <div id="comienzo">
+      <p>&nbsp</p>
+      <p>&nbsp</p>
+      <h2> ¿Qué país lideró las misiones espaciales en la década del 2010?</h2>
+      <p>&nbsp</p>
+      <h3> Como se puede observar, hay dos países que predominan en la lucha por el espacio.</h3> 
+      <h3> Por un lado, está Rusia, con un total de aproximadamente 215.000 horas, y por el otro, </h3> 
+      <h3> Estados Unidos, con 190.000 horas de misiones aproximadamente</h3>
+    </div>
+    
+    <p>&nbsp</p>
+    
+    <div class="graficos">
+      <div id="chart"></div>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.2/iframeResizer.contentWindow.js"></script>
+      <script src="dataviz_1/01.js"> </script>
+      <script> 
+        plotLine("dataviz_1/astronautas.csv","#chart")
+      </script>
+      </div>
+    </div>
+    </div>
+
+    <hr>
+
+    <div class="slides">
+    <div class="scroll">
+    <div id="graf2">
+      <p>&nbsp</p>
+      <p>&nbsp</p>
+      <h2> <span style="color: #14267e; font-weight: bold;">ESTADOS UNIDOS</span> vs <span style="color: #42a2dc; font-weight: bold;">RUSIA</span> </h2>
+      <p>&nbsp</p>
+      <h3> Siguendo el análisis anterior, se tomaron para este gráfico, los dos países con mayor presencia espacial.</h3> 
+      <h3> En esta ocasión, se muestra el promedio de horas misión de cada país en los distintos años de la década. </h3> 
+      <h3> Se puede notar, que aunque Estados Unidos, en el año 2016, presenta el promedio mas alto, </h3>
+      <h3> Rusia tiene más horas totales como se observa en el <a href="#comienzo">gráfico uno</a>. Esto se puede </h3>
+      <h3> explicar, gracias a que Rusia se mantuvo constante a lo largo de los años. </h3>
+    </div>
+
+    <p>&nbsp</p>
+    <p>&nbsp</p>
+    <p>&nbsp</p>
+    
+
+    <div class="graficos">
+      <div id="chart2"></div>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.2/iframeResizer.contentWindow.js"></script>
+      <script src="dataviz_2/02.js"> </script>
+      <script> 
+        plotLine("dataviz_2/astronautas.csv","#chart2")
+      </script>
+    </div>
+    </div>
+    </div>
+    
+    <hr>
+    <p>&nbsp</p>
+
+
+    <div class="slides">
+    <div class="scroll">
+    <div id="graf3">
+      <p>&nbsp</p>
+      <p>&nbsp</p>
+      <h2> ¿Qué estudiar para llegar a ser astronauta?</h2>
+      <p>&nbsp</p>
+      <h3> Se puede observar en el grafico las distintas profesiones que estudiaron los </h3> 
+      <h3> astronauras particpiantes de las misiones. La mayor cantidad de ellos estudiaron  </h3> 
+      <h3> ingenieria espacial</h3>
+    </div>
+    <p>&nbsp</p>
+    <p>&nbsp</p>
+
+    
+    <div class="graficos">
+      <div id="chart3"></div>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.2/iframeResizer.contentWindow.js"></script>
+      <script src="dataviz_3/03.js"> </script>
+      <script> 
+        plotLine("dataviz_3/astronautas.csv","#chart3")
+      </script>
+    </div>
+    </div>
+    </div>
+
+    <hr>
+    <p>&nbsp</p>
+
+    <div class="slides">
+    <div class="scroll">
+    <div id="graf4">
+      <p>&nbsp</p>
+      <p>&nbsp</p>
+      <h2> <span style="color: #14267e; font-weight: bold;">Militar</span> vs <span style="color: #42a2dc; font-weight: bold;">Civil</span> </h2>
+      <p>&nbsp</p>
+      <h3> Para cada año, del total de astronautas que realizaron misiones, se divide entre los que tienen</h3> 
+      <h3> status civil y militar. </h3> 
+      <h3> A pesar de no haber una diferencia abrumadora, en general hay mas con status civil que militar</h3>
+    </div>
+    <p>&nbsp</p>
+
+
+    <div class="graficos">
+      <div id="chart4"></div>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.2/iframeResizer.contentWindow.js"></script>
+      <script src="dataviz_4/04.js"> </script>
+      <script> 
+        plotLine("dataviz_4/astronautas.csv","#chart4")
+      </script>
+    </div>
+    </div>
+    </div>
+
+  </body>
+</html>
